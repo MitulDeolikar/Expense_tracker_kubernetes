@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expense-server
+  labels:
+    app: expense-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expense-server
+  template:
+    metadata:
+      labels:
+        app: expense-server
+    spec:
+      containers:
+        - name: expense-server
+          image: mituldeolikar/expense-server:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: "5000"
+            - name: DB_HOST
+              value: expense-mysql-service
+            - name: DB_USER
+              value: root
+            - name: DB_NAME
+              value: expense_tracker
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: expense-secrets
+                  key: db-password
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: expense-secrets
+                  key: jwt-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: expense-server-service
+spec:
+  selector:
+    app: expense-server
+  type: NodePort
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30500  # Access via <NodeIP>:30500

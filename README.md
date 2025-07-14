@@ -24,31 +24,20 @@ Defined PersistentVolume and PersistentVolumeClaim to retain data even if pods a
 ▶️ How to Run Locally (Using Minikube & Port Forwarding)
 Start Minikube Cluster
 
-bash
-Copy
-Edit
 minikube start
 Apply K8s Config Files
 (Assuming you're inside the k8s/ directory)
 
-bash
-Copy
-Edit
 kubectl apply -f .
 Port Forwarding to Access App Locally
 Open two terminals and run:
 
 Frontend (React app):
 
-bash
-Copy
-Edit
 kubectl port-forward services/expense-client-service 3000:80
-Backend (Server API):
 
-bash
-Copy
-Edit
+Backend (Server API):
 kubectl port-forward services/expense-server-service 5000:5000
+
 Access the Application
 Visit: http://localhost:3000

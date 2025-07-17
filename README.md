@@ -41,3 +41,10 @@ kubectl port-forward services/expense-server-service 5000:5000
 
 Access the Application
 Visit: http://localhost:3000
+
+
+<img width="1011" height="892" alt="Screenshot 2025-07-14 105103" src="https://github.com/user-attachments/assets/d1af1874-c3cd-4dd2-92d3-030726df1465" />
+
+<img width="1892" height="850" alt="Screenshot 2025-07-14 105210" src="https://github.com/user-attachments/assets/91f2d8d6-46b2-40bf-a9e5-c060c7a67e52" />
+
+
